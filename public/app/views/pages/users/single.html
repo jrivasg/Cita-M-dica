@@ -1,0 +1,53 @@
+<div class="page-header">
+    <h1 ng-if="user.type == 'create'">Registrar Usuario</h1>
+    <h1 ng-if="user.type == 'edit'">Editar Usuario</h1>
+</div>
+<form class="form-horizontal" ng-submit="user.saveUser()">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">NUHSA</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="user.userData.nuhsa" ng-required="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Nombre</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="user.userData.completeName" ng-required="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">DNI</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" ng-model="user.userData.dni" ng-required="true">
+        </div>
+        <label class="col-sm-2 control-label">Fecha Nacimiento</label>
+        <div class="col-sm-2">
+            <input type="date" class="form-control" ng-model="user.userData.birthDate" ng-required="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Doctor</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="user.userData.doctor" ng-required="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Centro Medico</label>
+        <div class="col-sm-6">
+            <select name="mySelect" id="mySelect" ng-options="center.center for center in user.centers track by center._id" ng-model="user.currentCenter"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'create'">Registrar Usuario</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Actualizar Usuario</button>
+        </div>
+    </div>
+</form>
+<div class="row show-hide-message" ng-show="user.message">
+    <div class="col-sm-6 col-sm-offset-2">
+        <div class="alert alert-info">
+            {{ user.message }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="page-header">
+    <h1>
+        Citas
+    </h1>
+</div>
+<div class="form-group">
+        <div class="col-sm-6" style="margin-bottom: inherit; margin: 0 auto !important;
+  float: none !important;">
+            <input type="date" class="form-control col-sm-3" ng-model="app.day" style="width:50%">
+            <a href="#" ng-click="app.getAppointments()" class="btn btn-primary">Consultar día</a>
+        </div>
+    </div>
+<div class="jumbotron text-center" ng-show="app.processing">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Cargando Citas...</p>
+</div>
+<table class="table table-bordered table-striped " style="width:60%" ng-show="app.apps">
+    <thead>
+        <tr>
+            <th>NUHSA</th>
+            <th>Hora</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="appointment in app.apps">
+            <td><a ng-href="/users/{{ appointment.nuhsa }}" class="btn btn-primary">{{ appointment.nuhsa }}</a></td>
+            <td>{{ appointment.dateDayTime | date : 'HH:mm'}}</td>
+            <td class="col-sm-3">
+                <a href="#" ng-click="app.finishAppointment(appointment)" class="btn btn-primary">Consulta concluida</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
